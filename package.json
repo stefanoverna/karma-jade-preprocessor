@@ -17,7 +17,7 @@
   ],
   "author": "Jeremy Williams<jeremy@ojdx.com>",
   "dependencies": {
-    "handlebars": "1.0.10"
+    "jade": "0.33.0"
   },
   "peerDependencies": {
     "karma": "~0.9"
