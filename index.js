@@ -1,21 +1,18 @@
 var handlebars = require('handlebars');
 
-var createHandlebarsPreprocessor = function(logger, basePath) {
-  var log = logger.create('preprocessor.handlebars');
+var createJadePreprocessor = function(logger, basePath) {
+  var log = logger.create('preprocessor.jade');
 
   return function(content, file, done) {
     var processed = null;
 
     log.debug('Processing "%s".', file.originalPath);
-    file.path = file.originalPath.replace(/\.hbs$/, '.js');
+    file.path = file.originalPath.replace(/\.jade$/, '.html');
 
-    var templateName = file.originalPath.replace(/^.*\/([^\/]+)\.hbs$/, '$1');
+    var templateName = file.originalPath.replace(/^.*\/([^\/]+)\.jade$/, '$1');
 
     try {
-      processed = "(function() {var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};"
-      + "templates['" + templateName + "'] = template("
-      + handlebars.precompile(content)
-      + ");})();";
+        jade.compile(content, jadeOptions)
     } catch (e) {
       log.error('%s\n  at %s', e.message, file.originalPath);
     }
