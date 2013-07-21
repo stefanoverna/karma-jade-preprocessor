@@ -22,7 +22,7 @@ var createJadePreprocessor = function(logger, basePath) {
       log.error('%s\n  at %s', e.message, file.originalPath);
     }
 
-    done(processed());
+    done(processed);
   };
 };
 
