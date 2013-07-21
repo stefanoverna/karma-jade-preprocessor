@@ -1,21 +1,21 @@
 {
-  "name": "karma-handlebars-preprocessor",
+  "name": "karma-jade-preprocessor",
   "version": "0.0.1",
-  "description": "A Karma plugin. Compile handlebars template on the fly.",
+  "description": "A Karma plugin. Compile jade template on the fly.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/hanachin/karma-handlebars-preprocessor.git"
+    "url": "git://github.com/ojdx/karma-jade-preprocessor.git"
   },
   "keywords": [
     "karma-plugin",
     "preprocessor",
-    "coffee"
+    "jade"
   ],
-  "author": "Vojta Jina <vojta.jina@gmail.com>",
+  "author": "Jeremy Williams<jeremy@ojdx.com>",
   "dependencies": {
     "handlebars": "1.0.10"
   },
