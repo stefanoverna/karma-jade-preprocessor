@@ -1,4 +1,4 @@
-var handlebars = require('handlebars');
+var jade = require('jade');
 
 var createJadePreprocessor = function(logger, basePath) {
   var log = logger.create('preprocessor.jade');
@@ -12,7 +12,12 @@ var createJadePreprocessor = function(logger, basePath) {
     var templateName = file.originalPath.replace(/^.*\/([^\/]+)\.jade$/, '$1');
 
     try {
-        jade.compile(content, jadeOptions)
+        var jadeOptions = {
+            filename: file.originalPath,
+            client: true,
+            pretty: true
+        };
+        processed = jade.compile(content, jadeOptions)
     } catch (e) {
       log.error('%s\n  at %s', e.message, file.originalPath);
     }
@@ -21,9 +26,9 @@ var createJadePreprocessor = function(logger, basePath) {
   };
 };
 
-createHandlebarsPreprocessor.$inject = ['logger', 'config.basePath'];
+createJadePreprocessor.$inject = ['logger', 'config.basePath'];
 
 // PUBLISH DI MODULE
 module.exports = {
-  'preprocessor:handlebars': ['factory', createHandlebarsPreprocessor]
+  'preprocessor:jade': ['factory', createJadePreprocessor]
 };
