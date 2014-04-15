@@ -7,7 +7,7 @@ var createJadePreprocessor = function(logger, basePath) {
     var processed = null;
 
     log.debug('Processing "%s".', file.originalPath);
-    file.path = file.originalPath.replace(/\.jade$/, '.html');
+    file.originalPath = file.originalPath.replace(/\.jade$/, '.html');
 
     var templateName = file.originalPath.replace(/^.*\/([^\/]+)\.jade$/, '$1');
 
@@ -17,13 +17,12 @@ var createJadePreprocessor = function(logger, basePath) {
             client: true,
             pretty: true
         };
-        processed = jade.compile(content, jadeOptions)
+        processed = jade.render(content, jadeOptions);    
     } catch (e) {
       log.error('%s\n  at %s', e.message, file.originalPath);
     }
-
-    done("define(['jadeRuntime'], function(jade) { return " + jade.compile(content, jadeOptions) +"; });");
-};
+    log.debug('Processed content as:\n%s', processed);
+    done(processed);
   };
 };
 
